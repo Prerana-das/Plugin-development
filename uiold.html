@@ -46,7 +46,7 @@
       d="M20.7692 4C11.5078 4 4 11.5078 4 20.7692C4 30.0306 11.5078 37.5385 20.7692 37.5385C25.4002 37.5385 29.5911 35.6626 32.6269 32.6269C35.6626 29.5911 37.5385 25.4002 37.5385 20.7692C37.5385 11.5078 30.0306 4 20.7692 4ZM2 20.7692C2 10.4033 10.4033 2 20.7692 2C31.1352 2 39.5385 10.4033 39.5385 20.7692C39.5385 25.592 37.7183 29.9914 34.7294 33.3152L45.7071 44.2929C46.0976 44.6834 46.0976 45.3166 45.7071 45.7071C45.3166 46.0976 44.6834 46.0976 44.2929 45.7071L33.3152 34.7294C29.9914 37.7183 25.592 39.5385 20.7692 39.5385C10.4033 39.5385 2 31.1352 2 20.7692Z"
       fill="black" />
   </svg>
-  
+  <!-- <iframe width="700px" src="http://localhost:8082/testingfigma" title="W3Schools Free Online Web Tutorials"> -->
   <img id="svgg" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAApgAAAKYB3X3/OAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAANCSURBVEiJtZZPbBtFFMZ/M7ubXdtdb1xSFyeilBapySVU8h8OoFaooFSqiihIVIpQBKci6KEg9Q6H9kovIHoCIVQJJCKE1ENFjnAgcaSGC6rEnxBwA04Tx43t2FnvDAfjkNibxgHxnWb2e/u992bee7tCa00YFsffekFY+nUzFtjW0LrvjRXrCDIAaPLlW0nHL0SsZtVoaF98mLrx3pdhOqLtYPHChahZcYYO7KvPFxvRl5XPp1sN3adWiD1ZAqD6XYK1b/dvE5IWryTt2udLFedwc1+9kLp+vbbpoDh+6TklxBeAi9TL0taeWpdmZzQDry0AcO+jQ12RyohqqoYoo8RDwJrU+qXkjWtfi8Xxt58BdQuwQs9qC/afLwCw8tnQbqYAPsgxE1S6F3EAIXux2oQFKm0ihMsOF71dHYx+f3NND68ghCu1YIoePPQN1pGRABkJ6Bus96CutRZMydTl+TvuiRW1m3n0eDl0vRPcEysqdXn+jsQPsrHMquGeXEaY4Yk4wxWcY5V/9scqOMOVUFthatyTy8QyqwZ+kDURKoMWxNKr2EeqVKcTNOajqKoBgOE28U4tdQl5p5bwCw7BWquaZSzAPlwjlithJtp3pTImSqQRrb2Z8PHGigD4RZuNX6JYj6wj7O4TFLbCO/Mn/m8R+h6rYSUb3ekokRY6f/YukArN979jcW+V/S8g0eT/N3VN3kTqWbQ428m9/8k0P/1aIhF36PccEl6EhOcAUCrXKZXXWS3XKd2vc/TRBG9O5ELC17MmWubD2nKhUKZa26Ba2+D3P+4/MNCFwg59oWVeYhkzgN/JDR8deKBoD7Y+ljEjGZ0sosXVTvbc6RHirr2reNy1OXd6pJsQ+gqjk8VWFYmHrwBzW/n+uMPFiRwHB2I7ih8ciHFxIkd/3Omk5tCDV1t+2nNu5sxxpDFNx+huNhVT3/zMDz8usXC3ddaHBj1GHj/As08fwTS7Kt1HBTmyN29vdwAw+/wbwLVOJ3uAD1wi/dUH7Qei66PfyuRj4Ik9is+hglfbkbfR3cnZm7chlUWLdwmprtCohX4HUtlOcQjLYCu+fzGJH2QRKvP3UNz8bWk1qMxjGTOMThZ3kvgLI5AzFfo379UAAAAASUVORK5CYII="
 >
 
@@ -97,12 +97,86 @@
     </div>
   </form>
 </div>
-
-<iframe width="700px" height="300px" src="http://localhost:8082/login" title="W3Schools Free Online Web Tutorials"></iframe>
 </div>
 
 <script>
-  
+  document.getElementById("submit-post").onclick=()=>{
+    console.log("calling func");
+    const username=document.getElementById("username").value;
+    const name=document.getElementById("name").value;
+    const description=document.getElementById("description").value;
+
+    const darkModeState =document.getElementById("dark-mode-on").checked;
+    const imageVariant= document.querySelector("input[name='varientGroup']:checked").value;
+
+    parent.postMessage({pluginMessage:{name,username,description,darkModeState,imageVariant}},'*');
+  }
+
+
+//   window.onmessage = async (event) => {
+//   if (event.data.pluginMessage.type === 'networkRequest') {
+//     var request = new XMLHttpRequest()
+//     // This link has random lorem ipsum text
+//     request.open('GET', 'http://localhost:3333')
+//     request.responseType = 'text'
+//     request.onload = () => {
+
+
+//       console.log("my res");
+//       window.parent.postMessage({pluginMessage: request.response}, '*')
+//     };
+//     request.send()
+//   }
+// }
+
+//darg drop
+// Initialize offset variables to be assigned later
+/***
+let offsetX = 0;
+	let offsetY = 0;
+
+	document.getElementById('item').addEventListener('dragstart', e => {
+		// Getting the offset position (The position of the cursor relative to the top-left corner of item being dragged)
+		offsetX = e.offsetX;
+		offsetY = e.offsetY;
+	});
+
+	document.getElementById('item').addEventListener('dragend', e => {
+		// Don't proceed if the item was dropped inside the plugin window.
+		if (e.view.length === 0) return;
+
+		// Getting the position of the cursor relative to the top-left corner of the browser page (Where the hamburger icon is)
+		const dropPosition = {
+			clientX: e.clientX,
+			clientY: e.clientY
+		};
+
+		// Getting the size of the app/browser window.
+		const windowSize = {
+			width: window.outerWidth,
+			height: window.outerHeight
+		};
+
+		// These are the offsets set from the dragstart event.
+		const offset = {
+			x: offsetX,
+			y: offsetY
+		};
+
+		const itemSize = {
+			width: e.target.clientWidth,
+			height: e.target.clientHeight
+		};
+
+    const svgg=document.getElementById("svgg");
+    console.log("svggsvggsvggsvgg",svgg);
+
+
+		// Sending the variables over to the main code.
+		window.parent.postMessage({ pluginMessage: { dropPosition, windowSize, offset, itemSize,svgg } }, '*');
+	});
+**/
+
   //icon drag drop=====================
   const icons = document.getElementsByClassName('icon');
 
