@@ -98,14 +98,29 @@
   </form>
 </div>
 
-<iframe width="700px" height="300px" src="http://localhost:8082/login" title="W3Schools Free Online Web Tutorials"></iframe>
+<iframe src="http://localhost:8082/uihut-plugin" allow="clipboard-read *" id="main_iframe" width="700px" height="300px"  title="W3Schools Free Online Web Tutorials"></iframe>
+
+<button onclick="myFunction()">Try it</button>
+
 </div>
 
 <script>
+
+//form submit
+document.getElementById("submit-post").onclick=()=>{
+    console.log("calling func");
+    const username=document.getElementById("username").value;
+    const name=document.getElementById("name").value;
+    const description=document.getElementById("description").value;
+
+    const darkModeState =document.getElementById("dark-mode-on").checked;
+    const imageVariant= document.querySelector("input[name='varientGroup']:checked").value;
+
+    parent.postMessage({pluginMessage:{name,username,description,darkModeState,imageVariant}},'*');
+  }
   
   //icon drag drop=====================
   const icons = document.getElementsByClassName('icon');
-
 for (const icon of icons) {
   icon.addEventListener('dragend', e => {
     // Don't proceed if the item was dropped inside the plugin window.
@@ -134,6 +149,30 @@ for (const icon of icons) {
    });
 }
 
+
+function myFunction() {
+  var iframe = document.getElementById("main_iframe");
+console.log(main_iframe,'main_iframe')
+ const iframe_policy = iframe.permissionsPolicy;
+ console.log(iframe_policy,'iframe_policy')
+  // var elmnt = iframe.contentWindow.document.getElementsByTagName("a");
+  // console.log('a',elmnt)
+  // console.log("elmnt dgfdfdfhdfh", elmnt);
+  // elmnt.style.display = "none";
+
+}
+
+// $(function() {
+//   console.log('BUTTONN TRIGGER')
+// //find iframe
+// let iframe = $('#main_iframe');
+// //find button inside iframe
+// let button = iframe.contents().find('#main_button');
+// //trigger button click
+// button.trigger("click");
+// console.log('BUTTONN TRIGGER')
+
+// });
 
 
 </script>

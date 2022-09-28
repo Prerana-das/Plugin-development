@@ -11,6 +11,10 @@
   "license": "",
   "devDependencies": {
     "@figma/plugin-typings": "^1.52.0",
+    "@types/node": "^18.7.20",
     "typescript": "*"
+  },
+  "dependencies": {
+    "axios": "^0.27.2"
   }
 }
